@@ -2,6 +2,8 @@
 
 module.exports = {
   Polygon: require('./polygon.js'),
-  Label: require('./label.js'),
-  Map: require('./map.js')
+  SLabel: require('./slabel.js'),
+  Point: require('./point.js'),
+  Map: require('./map.js'),
+  Color: require('../libiary/base.color.js')
 };

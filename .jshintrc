@@ -1,0 +1,7 @@
+{
+  "globals": {
+    "qq": true
+  },
+  "browser": true,
+  "node": true
+}

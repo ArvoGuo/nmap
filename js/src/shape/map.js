@@ -1,45 +1,62 @@
 'use strict';
-var Shape = require('./base.shape.js');
+var Shape = require('../libiary/base.shape.js');
 var _ = require('lodash');
-var Polygon = require('./polygon.js');
+
 function Map(element, options) {
+  Shape.call(this);
+  this.type = 'MAP';
   this.config(element, options).init();
 }
 
-Map.prototype = new Shape();
+Map.prototype = _.create(Shape.prototype, {
+  'constructor': Map
+});
 
 Map.prototype.config = function(element, options) {
-  this.type = "MAP";
-  this.polygonList = [];
+  this.childs = [];
   this.element = element;
-  this.targetOption = {
-    visible: false
+  this.targetOptions = this.targetOptions || {
   };
 
-  this.targetOption = _.merge(this.targetOption, options);
+  this.targetOptions = _.merge(this.targetOptions, options);
   return this;
 };
 
 Map.prototype.init = function() {
-  this.target = new qq.maps.Map(this.element, this.targetOption)
+  var self = this;
+  this.target = new qq.maps.Map(this.element, this.targetOptions);
+  qq.maps.event.addListener(this.target, 'mousemove', function(e) {
+    self.mousePos = e.latLng;
+  });
+  this.on('enableEdit', function() {
+    self.target.setOptions({
+      draggable: false,
+      scrollwheel: false,
+      disableDoubleClickZoom: false
+    });
+  });
+  this.on('disableEdit', function() {
+    self.target.setOptions({
+      draggable: true,
+      scrollwheel: true,
+      disableDoubleClickZoom: true
+    });
+  });
 };
 
-Map.prototype.drawPolygon = function(polygon) {
-  var self = this;
-  if (!polygon) {
-    polygon = new Polygon({
-      path: (function() {
-        var _path = [], len = 1200 * Math.sin(2 * Math.PI / 45);
-        [45, 135, 225, 315].forEach(function(value) {
-          _path.push(qq.maps.geometry.spherical.computeOffset(self.target.getCenter(), len, value));
-        });
-        return _path;
-      })(),
-      map: this.target,
-    });
-  }
-  polygon.setVisible(true);
-  this.polygonList.push(polygon);
+Map.prototype.fitBounds = function(shapes) {
+  var _shapes = shapes || this.childs;
+  var latlngBounds = new qq.maps.LatLngBounds();
+  _shapes.forEach(function(_shape) {
+    if (_shape.type == 'POLYGON') {
+      latlngBounds.union(_shape.target.getBounds());
+    }
+    if (_shape.type == 'SLABEL') {
+      latlngBounds.extend(_shape.target.getCenter());
+    }
+  });
+  this.target.fitBounds(latlngBounds);
 };
+
 
 module.exports  = Map;

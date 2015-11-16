@@ -1,10 +1,11 @@
 {
-  "name": "boiled",
+  "name": "NMap",
   "version": "1.0.0",
-  "main": "webpack.config.js",
+  "main": "./js/src/index.js",
   "dependencies": {
     "event-emitter": "^0.3.4",
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "webpack": "^1.12.4"
   },
   "devDependencies": {},
   "scripts": {
