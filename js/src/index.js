@@ -2,19 +2,19 @@
 var CoreShape = require('./shape');
 var _ = require('lodash');
 
-var Boiled = {};
+var NMap = {};
 
-Boiled.all = [];
+NMap.all = [];
 
-Boiled.create = function(type) {
+NMap.create = function(type) {
   var args = Array.prototype.slice.call(arguments);
   var s = new (CoreShape[type].bind.apply(CoreShape[type], args));
 
-  Boiled.all.push(s);
+  NMap.all.push(s);
   return s;
 };
 
-Boiled.addFn = function(type, key, fn) {
+NMap.addFn = function(type, key, fn) {
   if (!CoreShape[type]) {
     throw new Error( type + " isn't exist" );
   }
@@ -26,6 +26,6 @@ Boiled.addFn = function(type, key, fn) {
 
 
 
-module.exports = Boiled;
+module.exports = NMap;
 
 

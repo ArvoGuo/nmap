@@ -1,7 +1,8 @@
 {
-  "name": "NMap",
-  "version": "1.0.0",
-  "main": "./js/src/index.js",
+  "name": "nmap",
+  "version": "1.0.4",
+  "description": "",
+  "main": "js/src",
   "dependencies": {
     "event-emitter": "^0.3.4",
     "lodash": "^3.10.1",
@@ -9,9 +10,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ""
   },
   "author": "",
-  "license": "ISC",
-  "description": ""
+  "license": "ISC"
 }
