@@ -1,40 +1,64 @@
 'use strict';
-if (typeof window.qq.maps.Map === 'undefined') {
-  console.log('qq map is not found');
-  module.exports = {};
+var s = document.createElement('script');
 
-} else {
+s.src = 'http://map.qq.com/api/js?v=2.exp&libraries=geometry&key=FGBBZ-LXIRQ-EIN5W-G6TB5-SDDI7-U4BQ6&callback=nmapInit';
+
+document.getElementsByTagName('head')[0].appendChild(s);
+
+var NMap = {};
+
+NMap.loaded = false;
+
+NMap.cbs = [];
+
+NMap.onLoad = function (fn) {
+  if (this.loaded) {
+    fn();
+  } else {
+    this.cbs.push(fn);
+  }
+};
+
+/**
+ * 腾讯地图加载后的callback
+ *
+ * @return {[type]} [description]
+ */
+function nmapInit() {
+  NMap.loaded = true;
+
+  fillNMapProp(NMap);
+
+  for(var i = 0; i < NMap.cbs.length; i ++) {
+    var fn = NMap.cbs.pop();
+    fn();
+  }
+}
+
+function fillNMapProp(obj) {
   var CoreShape = require('./shape');
-  var _ = require('lodash');
 
-  var NMap = {};
+  obj.all = [];
 
-  NMap.all = [];
-
-  NMap.create = function(type) {
+  obj.create = function(type) {
     var args = Array.prototype.slice.call(arguments);
-    var s = new (CoreShape[type].bind.apply(CoreShape[type], args));
+    var shape = new (CoreShape[type].bind.apply(CoreShape[type], args));
 
-    NMap.all.push(s);
-    return s;
+    NMap.all.push(shape);
+    return shape;
   };
 
-  NMap.addFn = function(type, key, fn) {
+  obj.addFn = function(type, key, fn) {
     if (!CoreShape[type]) {
-      throw new Error( type + " isn't exist" );
+      throw new Error( type + ' is not exist' );
     }
     if (CoreShape[type].prototype[key]) {
       console.warn(type + 'has key' + key + ', you rewrite it;');
     }
     CoreShape[type].prototype[key] = fn;
   };
-
-
-
-
-
-  module.exports = NMap;
-
-
-
 }
+
+global.nmapInit = nmapInit;
+
+module.exports = NMap;
