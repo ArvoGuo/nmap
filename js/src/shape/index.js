@@ -6,5 +6,6 @@ module.exports = {
   InfoWindow: require('./infowindow.js'),
   Point: require('./point.js'),
   Map: require('./map.js'),
+  Marker: require('./marker.js'),
   Color: require('../libiary/base.color.js')
 };

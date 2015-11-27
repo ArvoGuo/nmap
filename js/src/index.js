@@ -1,4 +1,9 @@
 'use strict';
+if (typeof window.qq.maps.Map === 'undefined') {
+  console.log('qq map is not found');
+  module.exports = {};
+  return;
+}
 var CoreShape = require('./shape');
 var _ = require('lodash');
 
@@ -23,6 +28,8 @@ NMap.addFn = function(type, key, fn) {
   }
   CoreShape[type].prototype[key] = fn;
 };
+
+
 
 
 
