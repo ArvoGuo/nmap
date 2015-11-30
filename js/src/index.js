@@ -29,7 +29,7 @@ function nmapInit() {
 
   fillNMapProp(NMap);
 
-  for(var i = 0; i < NMap.cbs.length; i ++) {
+  while(NMap.cbs.length > 0) {
     var fn = NMap.cbs.pop();
     fn();
   }
@@ -38,13 +38,11 @@ function nmapInit() {
 function fillNMapProp(obj) {
   var CoreShape = require('./shape');
 
-  obj.all = [];
-
   obj.create = function(type) {
     var args = Array.prototype.slice.call(arguments);
     var shape = new (CoreShape[type].bind.apply(CoreShape[type], args));
 
-    NMap.all.push(shape);
+
     return shape;
   };
 

@@ -14,7 +14,7 @@ function Color() {
 }
 
 Color.prototype.produceColor = function() {
-  if (this.colorIndex >= this.colors.length) {
+  if (this.colorIndex >= this.colors.length - 1) {
     this.colorIndex = 0;
   }
   var color = this.colors[++ this.colorIndex];
