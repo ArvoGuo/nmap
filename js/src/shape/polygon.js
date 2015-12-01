@@ -119,6 +119,10 @@ Polygon.prototype.enableEdit = function() {
   });
 };
 
+Polygon.prototype.getPoints = function() {
+  return this.target.getPath().getArray();
+};
+
 Polygon.prototype.disableEdit =function() {
   qq.maps.event.clearListeners(this.target, 'click');
   qq.maps.event.clearListeners(this.target, 'mousedown');

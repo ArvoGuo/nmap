@@ -47,7 +47,7 @@ NMap.onLoad(function() {
     content: div,
     position: map.target.getCenter()
   });
-
+  console.log(polygon.getPoints());
   map.addChild(polygon);
   map.addChild(slabel);
   map.fitBounds([polygon, slabel]);
