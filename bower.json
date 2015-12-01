@@ -1,7 +1,7 @@
 {
   "name": "nmap",
   "description": "",
-  "main": "build/bundle.js",
+  "main": "build/nmap.dist.js",
   "authors": [
     "Arvo <ArvoGuo@gmail.com>"
   ],
