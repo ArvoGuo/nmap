@@ -61,6 +61,7 @@ Polygon.prototype.getBrothers = function() {
   return [];
 };
 
+
 Polygon.prototype.enableEdit = function() {
   if (this.editable) {
     return;
@@ -70,7 +71,7 @@ Polygon.prototype.enableEdit = function() {
   var startTime = 0;
   var endTime = 0;
   self.editable = true;
-  qq.maps.event.addListener(this.target, 'click', function () {
+  this.eventClick = qq.maps.event.addListener(this.target, 'click', function () {
     if (!self.editable) {
       return;
     }
@@ -87,7 +88,7 @@ Polygon.prototype.enableEdit = function() {
     }
 
   });
-  qq.maps.event.addListener(this.target, 'mousedown', function () {
+  this.eventMouseDown = qq.maps.event.addListener(this.target, 'mousedown', function () {
     if (this.getEditable()) {
       return;
     }
@@ -112,7 +113,7 @@ Polygon.prototype.enableEdit = function() {
       self.target.setPath(newPath);
     }, 67);
   });
-  qq.maps.event.addListener(this.target, 'mouseup', function (e) {
+  this.eventMouseUp = qq.maps.event.addListener(this.target, 'mouseup', function () {
     if (this.getEditable()) {
       return;
     }
@@ -127,9 +128,9 @@ Polygon.prototype.getPoints = function() {
 };
 
 Polygon.prototype.disableEdit =function() {
-  // qq.maps.event.clearListeners(this.target, 'click');
-  qq.maps.event.clearListeners(this.target, 'mousedown');
-  qq.maps.event.clearListeners(this.target, 'mouseup');
+  qq.maps.event.removeListener(this.eventClick);
+  qq.maps.event.removeListener(this.eventMouseUp);
+  qq.maps.event.removeListener(this.eventMouseDown);
   this.editable = false;
   this.emit('disableEdit');
 };
