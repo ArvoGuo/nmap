@@ -35,3 +35,15 @@
   自己看
 
 ##关于修改腾讯地图源，暂不支持，自己玩吧
+
+##Development
+```
+  npm install
+  npm install -g webpack-dev-server
+  webpack-dev-server --content-base ./public
+```
+
+##Build
+```
+  webpack --config webpack.config.prod.js
+```
