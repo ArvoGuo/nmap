@@ -71,11 +71,14 @@ Polygon.prototype.enableEdit = function() {
   var endTime = 0;
   self.editable = true;
   qq.maps.event.addListener(this.target, 'click', function () {
+    if (!self.editable) {
+      return;
+    }
     if (Math.abs(startTime - endTime) > 300) {
       return;
     }
     self.getBrothers().forEach(function(item) {
-      item.emit('diableEdit');
+      item.emit('disableEdit');
     });
     if (self.target.getEditable()) {
       self.emit('disableEdit');
@@ -124,10 +127,11 @@ Polygon.prototype.getPoints = function() {
 };
 
 Polygon.prototype.disableEdit =function() {
-  qq.maps.event.clearListeners(this.target, 'click');
+  // qq.maps.event.clearListeners(this.target, 'click');
   qq.maps.event.clearListeners(this.target, 'mousedown');
   qq.maps.event.clearListeners(this.target, 'mouseup');
   this.editable = false;
+  this.emit('disableEdit');
 };
 
 
