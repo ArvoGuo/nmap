@@ -5,8 +5,7 @@
   "main": "js/src",
   "dependencies": {
     "event-emitter": "^0.3.4",
-    "lodash": "^3.10.1",
-    "webpack": "^1.12.4"
+    "lodash": "^3.10.1"
   },
   "devDependencies": {},
   "scripts": {
