@@ -7,7 +7,9 @@
     "event-emitter": "^0.3.4",
     "lodash": "^3.10.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack": "^1.12.4"
+  },
   "scripts": {
     "test": ""
   },
