@@ -1,5 +1,6 @@
 {
   "name": "nmap",
+  "version": "1.0.16"
   "description": "",
   "main": "build/nmap.dist.js",
   "authors": [
