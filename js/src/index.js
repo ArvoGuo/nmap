@@ -1,17 +1,35 @@
 'use strict';
-var s = document.createElement('script');
-
-s.src = 'http://map.qq.com/api/js?v=2.exp&libraries=geometry&key=FGBBZ-LXIRQ-EIN5W-G6TB5-SDDI7-U4BQ6&callback=nmapInit';
-
-document.getElementsByTagName('head')[0].appendChild(s);
 
 var NMap = {};
 
+
+NMap.mapUrl = 'http://map.qq.com/api/js?v=2.exp&libraries=geometry&key=FGBBZ-LXIRQ-EIN5W-G6TB5-SDDI7-U4BQ6&callback=nmapInit';
+/**
+ * 加载当中
+ * @type {Boolean}
+ */
+NMap.loading = false;
+
+/**
+ * 是否加载完
+ * @type {Boolean}
+ */
 NMap.loaded = false;
 
 NMap.cbs = [];
 
 NMap.onLoad = function (fn) {
+
+  if(!this.loading) {
+    loadScript();
+    this.loading = true;
+  }
+
+  /**
+   * 塞入执行队列
+   * @param  {[type]} this.loaded [description]
+   * @return {[type]}             [description]
+   */
   if (this.loaded) {
     fn();
   } else {
@@ -33,6 +51,18 @@ function nmapInit() {
     var fn = NMap.cbs.pop();
     fn();
   }
+}
+
+/**
+ * 加载腾讯地图资源
+ * @return {[type]} [description]
+ */
+function loadScript() {
+  var s = document.createElement('script');
+
+  s.src = NMap.mapUrl;
+
+  document.getElementsByTagName('head')[0].appendChild(s);
 }
 
 function fillNMapProp(obj) {
