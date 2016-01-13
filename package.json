@@ -11,6 +11,7 @@
     "webpack": "^1.12.4"
   },
   "scripts": {
+    "start": "webpack-dev-server --content-base ./public",
     "build": "webpack --config webpack.config.prod.js",
     "test": ""
   },
