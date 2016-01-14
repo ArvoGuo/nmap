@@ -48,10 +48,13 @@ Map.prototype.fitBounds = function(shapes) {
   var _shapes = shapes || this.childs;
   var latlngBounds = new qq.maps.LatLngBounds();
   _shapes.forEach(function(_shape) {
-    if (_shape.type == 'POLYGON') {
+    if (!!_shape.target.getBounds) {
       latlngBounds.union(_shape.target.getBounds());
     }
-    if (_shape.type == 'SLABEL') {
+    if (!!_shape.target.getPosition) {
+      latlngBounds.extend(_shape.target.getPosition());
+    }
+    if (!!_shape.target.getCenter) {
       latlngBounds.extend(_shape.target.getCenter());
     }
   });

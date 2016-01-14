@@ -42,6 +42,10 @@ Overlay.prototype.setOptions = function(options) {
   this.draw();
 };
 
+Overlay.prototype.getPosition = function() {
+  return this.options.position;
+};
+
 Overlay.prototype.getCenter = function() {
   return this.options.position;
 };

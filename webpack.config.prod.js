@@ -9,12 +9,5 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     publicPath: '/',
     filename: 'nmap.dist.js'
-  },
-  plugins:[
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
-  ]
+  }
 };

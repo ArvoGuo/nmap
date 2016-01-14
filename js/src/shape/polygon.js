@@ -1,6 +1,7 @@
 'use strict';
 var Shape = require('../libiary/base.shape.js');
 var _ = require('lodash');
+
 function Polygon(options) {
   Shape.call(this);
   this.type = 'POLYGON';
@@ -125,6 +126,33 @@ Polygon.prototype.enableEdit = function() {
 
 Polygon.prototype.getPoints = function() {
   return this.target.getPath().getArray();
+};
+
+Polygon.prototype.getInnerPoint = function() {
+  if (!window.jsts) {
+    return this.target.getBounds().getCenter();
+  }
+
+  var factory = new window.jsts.geom.GeometryFactory();
+  var points = [];
+  var _polygon;
+  this.getPoints().forEach(function(item) {
+    points.push(coordFactory(item.lat, item.lng));
+  });
+  points.push(points[0]);
+  _polygon = polygonFactory(points);
+
+  return _polygon.getInteriorPoint();
+
+  function coordFactory(x,y) {
+    return new window.jsts.geom.Coordinate(x,y);
+  }
+  function linring(coords) {
+    return factory.createLinearRing(coords);
+  }
+  function polygonFactory(coords,holes) {
+    return factory.createPolygon(linring(coords),holes);
+  }
 };
 
 Polygon.prototype.disableEdit =function() {

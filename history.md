@@ -1,3 +1,8 @@
+v1.0.21
+-------
+* 添加异步加载jsts库
+* 添加 Polygon.prototype.getInnerPoint
+
 v1.0.16
 -------
 * 添加开发记录

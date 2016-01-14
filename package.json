@@ -1,18 +1,20 @@
 {
   "name": "nmap",
-  "version": "1.0.19",
+  "version": "1.0.21",
   "description": "",
   "main": "js/src",
   "dependencies": {
-    "event-emitter": "^0.3.4",
-    "lodash": "^3.10.1"
+    "event-emitter": "0.3.4",
+    "lodash": "3.10.1"
   },
   "devDependencies": {
-    "webpack": "^1.12.4"
+    "gulp": "3.9.0",
+    "gulp-uglify": "1.0.1",
+    "webpack": "1.12.4"
   },
   "scripts": {
     "start": "webpack-dev-server --content-base ./public",
-    "build": "webpack --config webpack.config.prod.js",
+    "build": "webpack --config webpack.config.prod.js && gulp compress",
     "test": ""
   },
   "author": "",

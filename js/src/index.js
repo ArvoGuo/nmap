@@ -2,7 +2,7 @@
 
 var NMap = {};
 
-
+NMap.jstsUrl = 'http://static10.elemecdn.com/napos/libs/jsts.min-1.0.0.js';
 NMap.mapUrl = 'http://map.qq.com/api/js?v=2.exp&libraries=geometry&key=FGBBZ-LXIRQ-EIN5W-G6TB5-SDDI7-U4BQ6&callback=nmapInit';
 /**
  * 加载当中
@@ -58,11 +58,18 @@ function nmapInit() {
  * @return {[type]} [description]
  */
 function loadScript() {
-  var s = document.createElement('script');
 
-  s.src = NMap.mapUrl;
+  addScript(NMap.jstsUrl);
 
-  document.getElementsByTagName('head')[0].appendChild(s);
+  addScript(NMap.mapUrl);
+
+  function addScript(url) {
+    var s = document.createElement('script');
+
+    s.src = url;
+
+    document.getElementsByTagName('head')[0].appendChild(s);
+  }
 }
 
 function fillNMapProp(obj) {
