@@ -35,6 +35,7 @@ Polygon.prototype.config = function(options) {
 Polygon.prototype.init = function() {
   var self = this;
   this.target = new qq.maps.Polygon(this.targetOptions);
+  this.jstsTarget = this.createJstsPolygon();
 
   this.on('enableEdit', function() {
     self.target.setOptions({
@@ -128,9 +129,9 @@ Polygon.prototype.getPoints = function() {
   return this.target.getPath().getArray();
 };
 
-Polygon.prototype.getInnerPoint = function() {
+Polygon.prototype.createJstsPolygon = function() {
   if (!window.jsts) {
-    return this.target.getBounds().getCenter();
+    return null;
   }
 
   var factory = new window.jsts.geom.GeometryFactory();
@@ -141,9 +142,8 @@ Polygon.prototype.getInnerPoint = function() {
   });
   points.push(points[0]);
   _polygon = polygonFactory(points);
-  var _innerPoint = _polygon.getInteriorPoint().getCoordinate();
 
-  return new qq.maps.LatLng(_innerPoint.x, _innerPoint.y);
+  return _polygon;
 
   function coordFactory(x,y) {
     return new window.jsts.geom.Coordinate(x,y);
@@ -154,6 +154,25 @@ Polygon.prototype.getInnerPoint = function() {
   function polygonFactory(coords,holes) {
     return factory.createPolygon(linring(coords),holes);
   }
+};
+
+Polygon.prototype.getInnerPoint = function() {
+  if (!window.jsts) {
+    return this.target.getBounds().getCenter();
+  }
+  var _polygon = this.jstsTarget || this.createJstsPolygon();
+  var _centerPoint = _polygon.getCentroid();
+  var _innerPoint = _polygon.getInteriorPoint();
+
+  var resultPoint;
+  if (_polygon.contains(_centerPoint)) {
+    resultPoint = _centerPoint;
+  } else {
+    resultPoint = _innerPoint;
+  }
+
+  return new qq.maps.LatLng(resultPoint.getCoordinate().x, resultPoint.getCoordinate().y);
+
 };
 
 Polygon.prototype.disableEdit =function() {
