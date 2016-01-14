@@ -141,8 +141,9 @@ Polygon.prototype.getInnerPoint = function() {
   });
   points.push(points[0]);
   _polygon = polygonFactory(points);
+  var _innerPoint = _polygon.getInteriorPoint().getCoordinate();
 
-  return _polygon.getInteriorPoint();
+  return new qq.maps.LatLng(_innerPoint.x, _innerPoint.y);
 
   function coordFactory(x,y) {
     return new window.jsts.geom.Coordinate(x,y);
