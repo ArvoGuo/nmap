@@ -1,6 +1,11 @@
+v1.0.24
+-------
+* 修正map.fitBounds
+
 v1.0.23
 -------
 * 修正Polygon.prototype.getInnerPoint
+
 v1.0.21
 -------
 * 添加异步加载jsts库
