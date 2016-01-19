@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "enter your commit message：";
+echo "enter your commit message(defalut is vertion)：";
 read message;
-npm version patch;
+npm version patch -m "${message}";
 
