@@ -15,7 +15,8 @@
   "scripts": {
     "start": "webpack-dev-server --content-base ./public",
     "build": "webpack --config webpack.config.prod.js && gulp compress",
-    "version": "npm run build && git add -A build/*",
+    "preversion": "npm run build",
+    "version": "git add -A build/* && git commit -m 'build'",
     "postversion": "git push origin master --tags && git push github master --tags",
     "test": ""
   },
