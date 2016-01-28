@@ -47,6 +47,7 @@ Map.prototype.init = function() {
 Map.prototype.fitBounds = function(shapes) {
   var self = this;
   var _shapes = shapes || this.childs;
+  var t = shapes ? 0 : 400;
   var latlngBounds = new qq.maps.LatLngBounds();
   _shapes.forEach(function(_shape) {
     if (!!_shape.target.getBounds && _shape.target.getBounds()) {
@@ -61,7 +62,7 @@ Map.prototype.fitBounds = function(shapes) {
   });
   setTimeout(function() {
     self.target.fitBounds(latlngBounds);
-  }, 500);
+  }, t);
 
 };
 
