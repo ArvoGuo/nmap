@@ -16,7 +16,7 @@
     "start": "webpack-dev-server --content-base ./public",
     "build": "webpack --config webpack.config.prod.js && gulp compress",
     "version": "npm run build",
-    "postversion": "git add -A build && git push origin master --tags && git push github master --tags",
+    "postversion": "git push origin master --tags && git push github master --tags",
     "test": ""
   },
   "author": "",
