@@ -13,40 +13,40 @@ NMap.onLoad(function() {
              '</div>';
 
 
-  var Boiled = require('./src');
+  var NMap = require('./src');
 
-  Boiled.addFn('Polygon', 'setActive', function() {
+  NMap.addFn('Polygon', 'setActive', function() {
     console.log(this);
   });
 
-  Boiled.addFn('Polygon', 'setNormal', function() {
+  NMap.addFn('Polygon', 'setNormal', function() {
     console.log(this);
   });
 
-  Boiled.addFn('Polygon', 'setDisable', function() {
+  NMap.addFn('Polygon', 'setDisable', function() {
     console.log(this);
   });
 
 
-  var map = Boiled.create('Map', document.getElementById('map'), {
+  var map = NMap.create('Map', document.getElementById('map'), {
     center: new qq.maps.LatLng(31.259928358250843, 121.44005798879533),
     zoom: 16
   });
 
-  var color = Boiled.create('Color');
+  var color = NMap.create('Color');
   console.log(color.toHex(color.produceColor(), 0.3));
 
-  var polygon = Boiled.create('Polygon', {
+  var polygon = NMap.create('Polygon', {
     path: (function(path) {
       var _path = [];
       for( var i = 0; i < path.length; i ++) {
-        _path.push(Boiled.create('Point', path[i].lat, path[i].lng).target);
+        _path.push(NMap.create('Point', path[i].lat, path[i].lng).target);
       }
       return _path;
     })(path)
   });
 
-  var slabel = Boiled.create('SLabel', {
+  var slabel = NMap.create('SLabel', {
     content: div,
     position: map.target.getCenter()
   });

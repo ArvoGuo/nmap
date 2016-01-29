@@ -16,17 +16,29 @@
  //bower
   <script src="bower_components/nmap/build/nmap.dist.js"></script>
   NMap.onLoad(function() {
-    var polygon = NMpa.create('Polygon', {
+    var map = NMap.create('Map', document.getElementById('map'), {
+      center: new qq.maps.LatLng(31.259928358250843, 121.44005798879533),
+      zoom: 16
+    });
+    var polygon = NMap.create('Polygon', {
       //options
     })
+    map.addChild(polygon);
+    map.fitBounds([polygon]);
   })
 
  //npm
   var NMap = require('nmap');
   NMap.onLoad(function() {
-    var polygon = NMpa.create('Polygon', {
+    var map = NMap.create('Map', document.getElementById('map'), {
+      center: new qq.maps.LatLng(31.259928358250843, 121.44005798879533),
+      zoom: 16
+    });
+    var polygon = NMap.create('Polygon', {
       //options
     })
+    map.addChild(polygon);
+    map.fitBounds([polygon]);
   })
 
 ```
@@ -36,14 +48,14 @@
 
 ##关于修改腾讯地图源，暂不支持，自己玩吧
 
-##Development
+##Development && Test && Demo
 ```
   npm install
   npm install -g webpack-dev-server
-  webpack-dev-server --content-base ./public
+  npm run start
 ```
 
 ##Build
 ```
-  webpack --config webpack.config.prod.js
+  npm run build
 ```
