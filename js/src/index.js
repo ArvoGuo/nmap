@@ -97,3 +97,5 @@ function fillNMapProp(obj) {
 global.nmapInit = nmapInit;
 
 module.exports = NMap;
+
+//
