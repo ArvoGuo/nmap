@@ -183,6 +183,8 @@ Polygon.prototype.disableEdit =function() {
   this.emit('disableEdit');
 };
 
+Polygon.prototype.test = 'test';
+
 
 
 module.exports = Polygon;
