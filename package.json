@@ -1,5 +1,5 @@
 {
-  "name": "nmap@napos",
+  "name": "@napos/nmap",
   "version": "1.0.39",
   "description": "",
   "main": "js/src",
