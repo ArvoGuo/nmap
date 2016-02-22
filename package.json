@@ -1,5 +1,5 @@
 {
-  "name": "nmap",
+  "name": "nmap@napos",
   "version": "1.0.39",
   "description": "",
   "main": "js/src",
@@ -20,6 +20,6 @@
     "postversion": "git push origin master --tags && git push github master --tags",
     "test": ""
   },
-  "author": "",
+  "author": "arvo",
   "license": "ISC"
 }
