@@ -34,7 +34,7 @@ NMap.onLoad(function() {
   });
 
   var color = NMap.create('Color');
-  console.log(color.toHex(color.produceColor(), 0.3));
+  console.log(color.toHex(color.produceColor(), 0.4));
 
   var polygon = NMap.create('Polygon', {
     path: (function(path) {
