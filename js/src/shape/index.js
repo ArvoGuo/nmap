@@ -7,5 +7,6 @@ module.exports = {
   Point: require('./point.js'),
   Map: require('./map.js'),
   Marker: require('./marker.js'),
-  Color: require('../libiary/base.color.js')
+  Color: require('../libiary/base.color.js'),
+  Circle: require('./circle.js')
 };
