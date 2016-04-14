@@ -1,9 +1,10 @@
 'use strict';
 
 var NMap = {};
+NMap.KEY = 'FGBBZ-LXIRQ-EIN5W-G6TB5-SDDI7-U4BQ6';
 NMap.nmapResourceUrls = window.nmapResourceUrls || [
   'http://static10.elemecdn.com/napos/libs/jsts.min-1.0.0.js',
-  'http://map.qq.com/api/js?v=2.exp&libraries=geometry&key=FGBBZ-LXIRQ-EIN5W-G6TB5-SDDI7-U4BQ6&callback=nmapInit'
+  'http://map.qq.com/api/js?v=2.exp&libraries=geometry&key='+ NMap.KEY +'&callback=nmapInit'
 ];
 /**
  * 加载当中
